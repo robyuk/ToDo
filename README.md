@@ -1,2 +1,2 @@
 # ToDo
-Simple ToDo app with CLI and GUI interfaces
+Simple ToDo List app with CLI and GUI interfaces
