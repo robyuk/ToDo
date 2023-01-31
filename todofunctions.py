@@ -1,5 +1,5 @@
 TODOFILE = "todos.txt"  # Default todo file path
-TODOLIST = [todofile]
+TODOLIST = [TODOFILE]
 
 def print_todo(todos=TODOLIST):
     """Prints the todo list in todoList"""
@@ -35,7 +35,7 @@ def confirmYN(text="Confirm"):
             continue
 
 
-def getTodoList(filename=TODOFILE):
+def getTodoList(filename=TODOFILE, display=True):
     """ open a todo list file at filename and read the todoList
         Return the todo list with the filename as the first item """
     while filename == "":
@@ -44,7 +44,8 @@ def getTodoList(filename=TODOFILE):
     try:
         with open(filename, "r") as file:
             todos = todos + file.readlines()
-        print_todo(todos)
+        if display:
+            print_todo(todos)
         return todos
     except FileNotFoundError:
         if confirmYN("New ToDo List," + filename):
