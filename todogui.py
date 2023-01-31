@@ -4,6 +4,8 @@ import PySimpleGUI as Gui
 
 _debug_ = False
 
+# Gui.theme('Default')  # https://www.pysimplegui.org/en/latest/readme/#themes
+
 todoList = getTodoList(display=False)
 
 label = Gui.Text("Type in a to-do")
@@ -31,7 +33,7 @@ while True:
         print(event, values)
 
     match event:
-        case "todoList":
+        case "todoList":  # Event when an item is selected in the list
             window["new_todo"].update(value=values["todoList"][0])
             window["message"].update(value="")
         case "Add":
