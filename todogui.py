@@ -1,16 +1,22 @@
-from todofunctions import write_todos, getTodoList, print_todo
+from todofunctions import write_todos, getTodoList
+from os import path
 import PySimpleGUI as Gui
 # import todofunctions
 
 _debug_ = False
+TODOFILE = "todos.txt"
 
 # Gui.theme('Default')  # https://www.pysimplegui.org/en/latest/readme/#themes
 
-todoList = getTodoList(display=False)
+if path.exists(TODOFILE):
+    todoList = getTodoList(display=False)
+else:
+    todoList = [TODOFILE]
+    write_todos(todoList)
 
 label = Gui.Text("Type in a to-do")
 input_box = Gui.InputText(tooltip="Enter to-do", key="new_todo")
-add_button = Gui.Button("Add")
+add_button = Gui.Button("Add", tooltip="Add Todo", key="Add")
 edit_button = Gui.Button("Edit")
 complete_button = Gui.Button("Complete")
 todoListBox = Gui.Listbox(values=todoList[1:], tooltip="Select a to-do", key="todoList",
@@ -44,14 +50,15 @@ while True:
                     print(message)
                 window["message"].update(value=message)
                 continue
-            todoList = getTodoList()
+            todoList = getTodoList(display=False)
             todoList.append(new_todo.strip().capitalize() + '\n')
             if _debug_:
                 print(todoList)
             write_todos(todoList)
-            window["todoList"].update(values=todoList[1:])
             message = f"Added: {new_todo}"
             window["message"].update(value=message)
+            window["new_todo"].update(value="")
+            window["todoList"].update(values=todoList[1:])
         case "Edit":
             todos = values["todoList"]
             if len(todos) == 1:
