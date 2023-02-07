@@ -4,14 +4,14 @@ import PySimpleGUI as Gui
 # import todofunctions
 
 _debug_ = False
-TODOFILE = "todos.txt"
+TODO_FILE = "todos.txt"
 
 # Gui.theme('Default')  # https://www.pysimplegui.org/en/latest/readme/#themes
 
-if path.exists(TODOFILE):
+if path.exists(TODO_FILE):
     todoList = getTodoList(display=False)
 else:
-    todoList = [TODOFILE]
+    todoList = [TODO_FILE]
     write_todos(todoList)
 
 label = Gui.Text("Type in a to-do")

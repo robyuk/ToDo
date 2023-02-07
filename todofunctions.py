@@ -1,7 +1,8 @@
-TODOFILE = "todos.txt"  # Default todo file path
-TODOLIST = [TODOFILE]
+TODO_FILE = "todos.txt"  # Default todo file path
+TODO_LIST = [TODO_FILE]
 
-def print_todo(todos=TODOLIST):
+
+def print_todo(todos=TODO_LIST):
     """Prints the todo list in todoList"""
     # Use a breakpoint in the code line below to debug your script.
     message = "\nTo Do List: " + todos[0]
@@ -35,7 +36,7 @@ def confirmYN(text="Confirm"):
             continue
 
 
-def getTodoList(filename=TODOFILE, display=True):
+def getTodoList(filename=TODO_FILE, display=True):
     """ open a todo list file at filename and read the todoList
         Return the todo list with the filename as the first item """
     while filename == "":
@@ -52,7 +53,7 @@ def getTodoList(filename=TODOFILE, display=True):
             return todos
 
 
-def write_todos(todos=TODOLIST):
+def write_todos(todos=TODO_LIST):
     """ Write the todos list to a file at path todos[0] """
     while todos[0] == '':
         file_name = input("Filename: ")
@@ -63,6 +64,7 @@ def write_todos(todos=TODOLIST):
     except:
         print("Error writing Todo list to file:", todos[0])
         todos[0] = '\n'
+
 
 if __name__ == '__main__':
     print("Hello from todofunctions")

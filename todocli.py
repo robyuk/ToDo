@@ -1,8 +1,8 @@
 # Press Shift+F10 to execute
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 # Starting values:
-todofile = "todos.txt"  # Default todo file path
-todoList = [todofile]
+TODO_FILE = "todos.txt"  # Default to-do file path
+TODO_LIST = [TODO_FILE]   # Default to-do list
 
 import time
 from todofunctions import getTodoList, write_todos, confirmYN, print_todo, get_userArg
@@ -10,16 +10,14 @@ from todofunctions import getTodoList, write_todos, confirmYN, print_todo, get_u
 
 if __name__ == '__main__':
     print(time.strftime("It is %H:%M on %d %b %Y"))
-    todofile = "todos.txt"  # Default todos file
+    todofile = TODO_FILE  # Default todos file
     userPrompt = "Enter a ToDo: "
     actionPrompt = "Type new, open, add, edit, remove, list, save, or quit: "
-#    todoList = [todofile]
+#    todoList = TODO_LIST
     userAction = "Ask"  # Dummy value to satisfy the condition in the first loop of the while
     todoList = getTodoList(todofile)  # Get the default todos
 
     while not userAction == "":  # Exit if userAction is empty
-        userAction = input(actionPrompt).strip().lower()  # Get the next user action
-        userArg = get_userArg(userAction)
         match userAction[0]:
             case 'n':
                 todoList = getTodoList(userArg)
@@ -89,6 +87,7 @@ if __name__ == '__main__':
             case _else:
                 pass
 
-
+        userAction = input(actionPrompt).strip().lower()  # Get the next user action
+        userArg = get_userArg(userAction)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
